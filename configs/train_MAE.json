@@ -1,0 +1,69 @@
+{
+  "GENERAL": {
+    "root_dir": "/home/roel/projects/WoF",
+    "mode": "train",
+    "name": "mae/train_val/ViT_S_tiny/98",
+    "seed": 1
+  },
+  "DATA": {
+    "batch_size": 16,
+    "fold": 0,
+    "geometric": false,
+    "icosphere": {
+      "bins": 256,
+      "radius": 128,
+      "subdivisions": 4
+    },
+    "mode": "train_val",
+    "n_workers": 12,
+    "root_dir": "/home/roel/data/nnUNet/raw/Dataset003_PretrainTAVI"
+  },
+  "MODEL": {
+    "loss": "L1Loss",
+    "decoder": {
+      "dim": 64,
+      "dim_head": 64,
+      "masking_ratio": 0.98,
+      "name": "MAE",
+      "n_heads": 6,
+      "n_layers": 4
+    },
+    "encoder": {
+      "dim": 384,
+      "dim_head": 64,
+      "dropout": 0,
+      "dropout_emb": 0,
+      "icosphere_subdivisions": 4,
+      "name": "ViT",
+      "n_channels": 1,
+      "n_heads": 6,
+      "n_layers": 12,
+      "size_full": [2562, 256],
+      "size_patch": [1, 256]
+    }
+  },
+  "OPTIMIZATION": {
+    "clip_grad": 1,
+    "eval_every": 5,
+    "gpu": 5,
+    "lambdas": [0.001],
+    "lr_policy": "CosineAnnealingWarmRestarts",
+    "name": "AdamW",
+    "n_cycles": 7,
+    "n_warmup": 40,
+    "pin_memory": false,
+    "resume": null,
+    "optimizer": {
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "lr": 1.5e-4,
+      "weight_decay": 0.05
+    },
+    "scheduler": {
+      "T_0": 40,
+      "T_mult": 2
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "GENERAL": {
+    "root_dir": "/home/roel/projects/WoF",
+    "mode": "train",
+    "name": "tube/lumen/Conv_GEMUNet",
+    "seed": 1
+  },
+  "DATA": {
+    "batch_size": 10,
+    "from_h5": false,
+    "geometric": true,
+    "mpr_transform": {
+      "ps": [127, 127],
+      "ps_polar": [32, 48],
+      "resample": false,
+      "spacing": [0.1, 0.1, 0.5],
+      "spacing_polar": [0.2, 0.13, 0.5]
+    },
+    "label": 1,
+    "mode": "train",
+    "n_samples": null,
+    "n_workers": 10,
+    "polar_transform": {
+      "l_rad": 64,
+      "n_theta": 48,
+      "n_rad": 32,
+      "p_theta": 0,
+      "shape": [197, 197]
+    },
+    "root_dir": "/home/roel/data/nnUNet/raw/DatasetXXX_ASOCA",
+    "sample_length": 36,
+    "size": 100
+  },
+  "MODEL": {
+    "loss": "MSELoss",
+    "decoder": {
+      "name": "ConvEncoder"
+    },
+    "encoder": {
+      "dim": [8, 8, 16, 16],
+      "l": 32,
+      "n_channels": 1
+    },
+    "probe": {
+      "activation": "LeakyReLU",
+      "dim": [16, 16, 16],
+      "max_order": 2,
+      "name": "GEMUNet",
+      "n_classes": 1,
+      "n_rings": 2
+    }
+  },
+  "OPTIMIZATION": {
+    "clip_grad": 1,
+    "encoder": {
+      "freeze": false,
+      "resume": null
+    },
+    "eval_every": 5,
+    "gpu": 3,
+    "lr_policy": "CosineAnnealingWarmRestarts",
+    "name": "AdamW",
+    "n_cycles": 3,
+    "n_warmup": 20,
+    "pin_memory": false,
+    "resume": null,
+    "optimizer": {
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "lr": 1e-2,
+      "weight_decay": 0.05
+    },
+    "scheduler": {
+      "T_0": 80,
+      "T_mult": 2
+    }
+  }
+}

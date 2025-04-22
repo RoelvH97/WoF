@@ -1,0 +1,83 @@
+{
+  "GENERAL": {
+    "root_dir": "/home/roel/projects/WoF",
+    "mode": "train",
+    "name": "sphere/myocardium/MAE_GEMCNN",
+    "seed": 1
+  },
+  "DATA": {
+    "batch_size": 10,
+    "geometric": true,
+    "icosphere": {
+      "bins": 256,
+      "radius": 128,
+      "subdivisions": 4
+    },
+    "label": 5,
+    "mode": "train",
+    "n_samples": 1,
+    "n_workers": 4,
+    "root_dir": "/home/roel/data/nnUNet/raw/Dataset001_WholeHeartFull",
+    "size": 100
+  },
+  "MODEL": {
+    "dim": 64,
+    "loss": "NestedBoundaryLoss",
+    "decoder": {
+      "dim": 64,
+      "dim_head": 64,
+      "masking_ratio": 0.98,
+      "name": "MAEncoder",
+      "n_heads": 6,
+      "n_layers": 1
+    },
+    "encoder": {
+      "dim": 384,
+      "dim_head": 64,
+      "dropout": 0,
+      "dropout_emb": 0,
+      "icosphere_subdivisions": 4,
+      "name": "ViT",
+      "n_channels": 1,
+      "n_heads": 6,
+      "n_layers": 1,
+      "size_full": [2562, 256],
+      "size_patch": [1, 256]
+    },
+    "probe": {
+      "dim": [16, 16, 16],
+      "max_order": 2,
+      "name": "GEMCNN",
+      "n_classes": 3,
+      "n_rings": 2
+    }
+  },
+  "OPTIMIZATION": {
+    "clip_grad": 1,
+    "encoder": {
+      "freeze": false,
+      "resume": null
+    },
+    "eval_every": 5,
+    "gpu": 4,
+    "lambdas": [0.25, 0.25, 0.01],
+    "lr_policy": "CosineAnnealingWarmRestarts",
+    "name": "AdamW",
+    "n_cycles": 2,
+    "n_warmup": 10,
+    "pin_memory": false,
+    "resume": null,
+    "optimizer": {
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "lr": 1e-3,
+      "weight_decay": 0.05
+    },
+    "scheduler": {
+      "T_0": 90,
+      "T_mult": 2
+    }
+  }
+}

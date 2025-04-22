@@ -1,0 +1,63 @@
+{
+  "GENERAL": {
+    "root_dir": "/home/roel/projects/WoF",
+    "mode": "infer",
+    "name": "sphere/pericardium/Conv_GEMUNet",
+    "seed": 1
+  },
+  "DATA": {
+    "icosphere": {
+      "bins": 256,
+      "radius": 128,
+      "subdivisions": 4
+    },
+    "root_dir": "/home/roel/data/nnUNet/raw/Dataset001_WholeHeartFull/imagesTs"
+  },
+  "MODEL": {
+    "ckpt": "/home/roel/projects/WoF/lightning_logs/sphere/pericardium/Conv_GEMUNet_0/19-03-2025_22-42-54",
+    "dim": 64,
+    "loss": "L1Loss",
+    "decoder": {
+      "name": "ConvEncoder"
+    },
+    "encoder": {
+      "dim": [8, 8, 16, 16, 32, 32, 64],
+      "l": 256,
+      "n_channels": 1
+    },
+    "probe": {
+      "dim": [24, 24, 24],
+      "max_order": 2,
+      "name": "GEMUNet",
+      "n_classes": 1,
+      "n_rings": 2
+    }
+  },
+  "OPTIMIZATION": {
+    "clip_grad": 1,
+    "encoder": {
+      "freeze": false,
+      "resume": null
+    },
+    "eval_every": 5,
+    "gpu": 3,
+    "lr_policy": "CosineAnnealingWarmRestarts",
+    "name": "AdamW",
+    "n_cycles": 3,
+    "n_warmup": 20,
+    "pin_memory": false,
+    "resume": null,
+    "optimizer": {
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "lr": 1e-2,
+      "weight_decay": 0.05
+    },
+    "scheduler": {
+      "T_0": 80,
+      "T_mult": 2
+    }
+  }
+}

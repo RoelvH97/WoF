@@ -1,0 +1,64 @@
+{
+  "GENERAL": {
+    "root_dir": "/home/roel/projects/WoF",
+    "mode": "infer",
+    "name": "sphere/myocardium/Conv_GEMCNN",
+    "seed": 1
+  },
+  "DATA": {
+    "icosphere": {
+      "bins": 256,
+      "radius": 128,
+      "subdivisions": 4
+    },
+    "root_dir": "/home/roel/data/nnUNet/raw/Dataset001_WholeHeartFull/imagesTs"
+  },
+  "MODEL": {
+    "ckpt": "/home/roel/projects/WoF/lightning_logs/sphere/myocardium/Conv_GEMCNN_0/19-03-2025_16-00-53",
+    "dim": 64,
+    "loss": "NestedBoundaryLoss",
+    "decoder": {
+      "name": "ConvEncoder"
+    },
+    "encoder": {
+      "dim": [8, 8, 16, 16, 32, 32, 64],
+      "l": 256,
+      "n_channels": 1
+    },
+    "probe": {
+      "dim": [24, 24, 24],
+      "max_order": 2,
+      "name": "GEMCNN",
+      "n_classes": 3,
+      "n_rings": 2
+    }
+  },
+  "OPTIMIZATION": {
+    "clip_grad": 1,
+    "encoder": {
+      "freeze": false,
+      "resume": null
+    },
+    "eval_every": 5,
+    "gpu": 5,
+    "lambdas": [0.25, 0.25, 0.01],
+    "lr_policy": "CosineAnnealingWarmRestarts",
+    "name": "AdamW",
+    "n_cycles": 2,
+    "n_warmup": 10,
+    "pin_memory": false,
+    "resume": null,
+    "optimizer": {
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "lr": 1e-3,
+      "weight_decay": 0.05
+    },
+    "scheduler": {
+      "T_0": 90,
+      "T_mult": 2
+    }
+  }
+}
