@@ -101,7 +101,7 @@ pip install einops trimesh stl
 
 The framework is evaluated on the following datasets:
 
-> **Note:** The original work utilized datasets named "WholeHeartFull" (LV and LV myocardium), "PericardiumFull" (pericardium), "PretrainTAVI" (spherical pre-training), and "ASOCA" (coronary lumen). All datasets are expected to be in nnUNet raw dataset format, for which helper functions can be found in `preprocessing.py`. Within the Amsterdam UMC network, these datasets can be found at "R:/QIA/Users/Roel/data/nnUNet_raw/...". For internal use, Dataset007_ASOCA contains mpr images with edited reference segmentations (see train_ConvEncoder_GEMUNet_lumen_mpr.json).
+> **Note:** The original work utilized datasets named "WholeHeartFull" (LV and LV myocardium), "PericardiumFull" (pericardium), "PretrainTAVI" (spherical pre-training), and "ASOCA" (coronary lumen). All datasets are expected to be in nnUNet raw dataset format, for which helper functions can be found in `preprocessing.py`.
 
 ### MM-WHS (Multi-Modality Whole Heart Segmentation)
 - Used as an external test set for LV cavity and myocardium segmentation
@@ -252,8 +252,10 @@ If you use this code in your research, please cite:
 @article{van2025world,
   title={World of Forms: Deformable geometric templates for one-shot surface meshing in coronary CT angiography},
   author={van Herten, Rudolf LM and Lagogiannis, Ioannis and Wolterink, Jelmer M and Bruns, Steffen and Meulendijks, Eva R and Dey, Damini and de Groot, Joris R and Henriques, Jos{\'e} P and Planken, R Nils and Saitta, Simone and others},
-  journal={arXiv preprint arXiv:2409.11837},
-  year={2025}
+  journal={Medical Image Analysis},
+  pages={103582},
+  year={2025},
+  publisher={Elsevier}
 }
 ```
 ## License
